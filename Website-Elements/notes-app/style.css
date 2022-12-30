@@ -1,0 +1,134 @@
+
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: rgba(167, 223, 217, 1)
+}
+
+.study-header{
+    font-family: sans-serif;
+    color: rgb(0, 74, 69);
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+.notes {
+    display: flex;
+    height: 600px;
+}
+
+.notes * {
+    font-family: sans-serif;
+}
+
+.notes__sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    margin: 30px 30px;
+    
+    max-height: 600px;
+}
+.notes__container {
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 17px;
+    width: 300px;
+    height: 425px;
+    background-color: rgba(221, 246, 240, 1);
+    border-radius: 15px;
+    /* margin: 30px 30px; */
+}
+
+.notes__add {
+    background: rgba(70, 139, 135, 1);
+    border: none;
+    border-radius: 7px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.25em;
+    font-weight: bold;
+    /* margin-bottom: 1em; */
+    padding: 0.75em 0;
+
+    /* position: fixed; */
+    /* bottom: 150px; */
+    width: 334px;
+    transition: background-color 0.2s;
+
+}
+
+.notes__add:hover {
+    background: rgb(73, 184, 178);
+}
+.notes__add:active {
+    background: rgb(79, 203, 197);
+}
+
+.notes__list-item {
+    cursor: pointer;
+    color: rgb(0, 74, 69);
+}
+
+/* make the currently selected note bold */
+.notes__list-item--selected {
+    background: rgba(167, 223, 217, 1);
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.notes__small-title,
+.notes__small-updated {
+    padding: 10px;
+}
+
+.notes__small-title {
+    font-size: 1.2em;
+}
+
+.notes__small-body {
+    padding: 0 10px;
+}
+
+.notes__small-updated {
+    color: rgb(51, 131, 127);
+    font-style: italic;
+    text-align: right;
+}
+
+.notes__preview {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 3em;
+    flex-grow: 1;
+    background-color: rgba(221, 246, 240, 1);
+    margin: 30px 30px;
+    margin-right: 0px;
+    border-radius: 15px;
+}
+
+.notes__title,
+.notes__body {
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: rgba(221, 246, 240, 1);
+    color: rgb(0, 74, 69);
+}
+
+.notes__title {
+    font-size: 2.1em;
+    font-weight: bold;
+}
+
+.notes__body {
+    flex-grow: 1;
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-top: 10px;
+    resize: none;
+}
