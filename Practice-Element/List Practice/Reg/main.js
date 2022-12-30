@@ -1,3 +1,4 @@
+/* tutorial: https://www.youtube.com/watch?v=MkESyVB4oUw */
 window.addEventListener('load', () => {
 	const form = document.querySelector("#new-task-form");
 	const input = document.querySelector("#new-task-input");

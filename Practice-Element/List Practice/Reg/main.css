@@ -1,5 +1,10 @@
+
+/* tutorial: https://www.youtube.com/watch?v=MkESyVB4oUw */
+
 /* Define variables for the root element */
 :root {
+    /*our colors for focus-pal*/
+
     /*--light-gray: #d9d9d9;
     --dark-gray: #949090;
     --darkest-gray: #5e5454;
@@ -8,6 +13,7 @@
     --darkest-blue: #468b86;
     --black: #121514;*/
 
+    /*colors from tutorial*/
     --dark: #374151;
 	--darker: #1F2937;
 	--darkest: #111827;
@@ -22,6 +28,7 @@
     background-color: var(--main-bg-color);
 }*/
 
+/*the star changes the formatting for everything*/
 *{
     box-sizing: border-box;
     margin: 0;

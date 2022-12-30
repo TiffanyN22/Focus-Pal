@@ -1,0 +1,64 @@
+<!-- referenced tutorial: https://www.youtube.com/watch?v=6eFwtaZf6zc -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusPal To Do List</title>
+
+    <!-- CSS Import -->
+	<link rel="stylesheet" href="main.css" />
+	<!-- End of CSS Import -->
+</head>
+<body>
+    <main class="app">
+        <!-- Top header -->
+            <h1>
+                Welcome to Focus Pal!
+            </h1>
+        <!-- End of Top header -->
+
+        <!-- Todo List -->
+		<section class="todo-list">
+			<h3>TODO LIST</h3> 
+            <!-- h3 is the size not number of headers -->
+			<div class="list" id="todo-list"></div>
+		</section>
+		<!-- End of Todo List -->
+
+        <!-- New Todo -->
+		<section class="create-todo">
+			<h3>CREATE A TODO</h3>
+			<form id="new-todo-form">
+                <label> Task:</label>
+                <input 
+					type="text" 
+					placeholder="e.g. Write paper"
+					name="content"
+					id="content" />
+
+                <label> Category:</label>
+                <input 
+                    type="text" 
+                    placeholder="e.g. English Class"
+                    name="content"
+                    id="content" /> 
+
+                <label> Time to complete:</label>
+                <input type="time" id="time1">
+
+                <input type="submit" value="Add" />
+			</form>
+		</section>
+		<!-- End of New Todo -->
+        
+    </main>
+    <!-- End of App Wrapper -->
+
+    <!-- JS Import -->
+	<script src="main.js"></script>
+	<!-- End of JS Import -->
+</body>
+</html>
