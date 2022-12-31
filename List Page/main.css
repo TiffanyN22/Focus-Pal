@@ -1,6 +1,5 @@
 /* referenced tutorial: https://www.youtube.com/watch?v=6eFwtaZf6zc&t=0s */
 
-
 /* Variables */
 :root {
 
@@ -51,7 +50,7 @@ input:not([type="radio"]):not([type="checkbox"]), button {
 
 /* End of Resets */
 /* Add a black background color to the top navigation */
-/* https://www.w3schools.com/howto/howto_js_topnav.asp */
+/* reference: https://www.w3schools.com/howto/howto_js_topnav.asp */
 .topnav {
     z-index: -1;
     margin: 0;
@@ -275,7 +274,8 @@ input[type="checkbox"] {
     left: 20%;
     right: 5%;
     top: 120px;
-    height: 70%;
+    /*margin-bottom: 10%;*/
+    height: 80%; /*figure out how to snap bottom to bottom of list/ make scroll section in the list of tasks*/
     background-color: var(--dark-blue);
     /*
     display: flex;

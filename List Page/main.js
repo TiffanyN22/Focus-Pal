@@ -1,17 +1,12 @@
 /* tutorial: https://www.youtube.com/watch?v=6eFwtaZf6zc&t=0s */
-
+/*math english, business personal
+math = business, english = personal*/
 window.addEventListener('load', () => {
+    /*if there are to-do's saved in local storage, gettem!
+    also, encoding with JSON.string so JSON.parse unlocks it somehow
+    todos is a global variable so we can use it anywhere without const?*/
 	todos = JSON.parse(localStorage.getItem('todos')) || [];
-	const nameInput = document.querySelector('#name');
 	const newTodoForm = document.querySelector('#new-todo-form');
-
-	const username = localStorage.getItem('username') || '';
-
-	nameInput.value = username;
-
-	nameInput.addEventListener('change', (e) => {
-		localStorage.setItem('username', e.target.value);
-	})
 
 	newTodoForm.addEventListener('submit', e => {
 		e.preventDefault();
@@ -55,10 +50,10 @@ function DisplayTodos () {
 		input.type = 'checkbox';
 		input.checked = todo.done;
 		span.classList.add('bubble');
-		if (todo.category == 'personal') {
-			span.classList.add('personal');
+		if (todo.category == 'english') {
+			span.classList.add('english');
 		} else {
-			span.classList.add('business');
+			span.classList.add('math');
 		}
 		content.classList.add('todo-content');
 		actions.classList.add('actions');
