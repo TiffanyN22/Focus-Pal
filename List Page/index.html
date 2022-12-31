@@ -13,24 +13,25 @@
 	<!-- End of CSS Import -->
 </head>
 <body>
+
+    <div class="topnav">
+                <!-- Top header -->
+                <h1>
+                    Welcome to Focus Pal!
+                    <style>
+                  </style> 
+                </h1>
+            <!-- End of Top header -->
+    
+      </div>
+
+    <div class="section-background"></div>
+
     <main class="app">
-        <!-- Top header -->
-            <h1>
-                Welcome to Focus Pal!
-            </h1>
-        <!-- End of Top header -->
-
-        <!-- Todo List -->
-		<section class="todo-list">
-			<h3>TODO LIST</h3> 
-            <!-- h3 is the size not number of headers -->
-			<div class="list" id="todo-list"></div>
-		</section>
-		<!-- End of Todo List -->
-
+    
         <!-- New Todo -->
 		<section class="create-todo">
-			<h3>CREATE A TODO</h3>
+			<h3>Create a task</h3>
 			<form id="new-todo-form">
                 <label> Task:</label>
                 <input 
@@ -39,21 +40,85 @@
 					name="content"
 					id="content" />
 
-                <label> Category:</label>
-                <input 
-                    type="text" 
-                    placeholder="e.g. English Class"
-                    name="content"
-                    id="content" /> 
-
+                <!-- this is if you want to add a drop down with different classes (need to figure out how to have user input into the list though)
+                <label for="category">Choose a category:</label>
+    
+                <select name="options" id="options">
+                <option value="Math">Math</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                </select> -->
+                
                 <label> Time to complete:</label>
-                <input type="time" id="time1">
+                <input type="time" id="time1"> 
+                <!-- figure out how to have it not be in hours of the day-->
+                <!-- <input type="time" step="300"> --> <!-- 5 min step -->
+                
+
+                <h4>Pick a category</h4>
+				<div class="options">
+					<label>
+						<input type="radio" name="category" id="category1" value="math" /> 
+						<span class="bubble math"></span>
+						<div>Math</div>
+					</label>
+					<label>
+						<input type="radio" name="category" id="category2" value="english" />
+						<span class="bubble english"></span>
+						<div>English</div>
+					</label>
+				</div>
 
                 <input type="submit" value="Add" />
-			</form>
-		</section>
-		<!-- End of New Todo -->
         
+            </form>
+            <!-- add another form to ask to add a category / figure out how to use inputted things to add to existing drop downs-->
+		</section>
+
+        </section>
+		<!-- End of New Todo -->
+
+
+
+        <!-- Todo List -->
+		<section class="todo-list">
+			<h3>List of tasks</h3> 
+            <!-- h3 is the size not number of headers -->
+			<div class="list" id="todo-list"></div>
+		</section>
+		<!-- End of Todo List -->
+
+
+        <!-- Nav Buttons-->
+        <section class="nav-buttons">
+            <div class="left-border"></div>
+
+            <div class="home-button">
+                <h5>Home</h5>
+            </div>
+
+            <div class="calendar-button">
+                <h5>Calendar</h5>
+            </div>
+        </section>
+        <!-- End of Nav Buttons-->
+
+        <!-- Notification-->
+        <section class="notification">
+            <div class="notice-background">
+                <h6>Notice! You are scheduled to
+                    be working on Essay for the 
+                    next hour</h6>
+            </div>
+            <div class="notice-text">
+                <h6>Notice! You are scheduled to
+                    be working on Essay for the 
+                    next hour</h6>
+            </div>
+        </section>
+        <!-- End of Notification-->
+
     </main>
     <!-- End of App Wrapper -->
 

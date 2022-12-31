@@ -1,0 +1,405 @@
+/* referenced tutorial: https://www.youtube.com/watch?v=6eFwtaZf6zc&t=0s */
+
+
+/* Variables */
+:root {
+
+    /*our colors for focus-pal*/
+    --light-gray: #d9d9d9;
+    --dark-gray: #949090;
+    --darkest-gray: #5e5454;
+    --even-darker-gray: #5E5454;
+    --light-blue: #f1f7f4;
+    --dark-blue:  #a8dfd9;
+    --darkest-blue: #468b86;
+    --black: #121514;
+    --text: #224D54;
+
+    /*colors from tutorial*/
+	--primary: #EA40A4;
+	--math: #3a82ee;
+	--english: var(--primary);
+	--light: #EEE;
+	--grey: #888;
+	--dark: #313154;
+	--danger: #ff5b57;
+
+	--shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+	--math-glow: 0px 0px 4px rgba(58, 130, 238, 0.75);
+	--english-glow: 0px 0px 4px rgba(234, 64, 164, 0.75);
+}
+/* End of Variables */
+
+/* Resets */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'montserrat', sans-serif;
+}
+/*
+/* gets rid of outlines and backfill of task, time, and add*/
+/*figure out how to change color of time input because it's UGLY*/
+input:not([type="radio"]):not([type="checkbox"]), button {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+	cursor: initial;
+}
+
+/* End of Resets */
+/* Add a black background color to the top navigation */
+/* https://www.w3schools.com/howto/howto_js_topnav.asp */
+.topnav {
+    z-index: -1;
+    margin: 0;
+	padding: 0;
+    width:100%;
+    background-color: var(--light-gray);
+    overflow: hidden;
+  }
+
+* {
+	margin: none;
+	padding: none;
+	box-sizing: border-box;
+	font-family: 'montserrat', sans-serif;
+}
+
+
+body {
+	background: var(--light-blue);
+	color: var(--text);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+section {
+    /* 1rem = 16px */
+	margin-top: 4rem;
+	margin-bottom: 2rem;
+	padding-left: 22%;
+	padding-right: 7%;
+   /* background: var(--dark-blue) ;*/
+}
+
+h1 {
+	margin: 1rem;
+	padding: 1rem;
+    color: var(--even-darker-gray);
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 0.5rem;
+    margin-left:16%;
+}
+
+h3 {
+
+	color: var(--text);
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 0.5rem;
+    /*background: var(--dark-blue) ;*/
+}
+
+h4 {
+
+	color: var(--grey);
+	font-size: 0.875rem;
+	font-weight: 700;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+	/*margin-bottom: 0.5rem;*/
+}
+
+h5 {
+    color: var(--even-darker-gray);
+	font-size: 0.875rem;
+	font-weight: 700;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.49rem;
+    padding: 0.4rem;
+}
+h6 {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+	font-weight: 400;
+    padding: 0.4rem;
+    opacity: 1;
+
+}
+/*.section-background {
+    display: flex;
+    border-radius: 3rem;
+    position: absolute;
+    z-index: -1;
+    width: 80%; 
+    height: 35rem;
+    left: 10rem;
+    top: 120px;
+    background-color: var(--dark-blue);
+  }*/
+
+.left-border {
+    position: absolute;
+    z-index:0;
+    height: 100%;
+    width: 15%;
+    left: 0;
+    top: 0;
+    background-color: var(--darkest-blue);
+    margin-top: 0rem;
+}
+
+.calendar-button {
+    border-radius: 1rem;
+    z-index:1;
+    position: absolute;
+    height: 3rem;
+    width: 6rem;
+    left: 1rem;
+    top: 5rem;
+    background-color: var(--dark-blue);
+}
+
+.home-button {
+    border-radius: 1rem;
+    z-index:1;
+    position: absolute;
+    height: 3rem;
+    width: 6rem;
+    left: 1rem;
+    top: 9rem;
+    background-color: var(--dark-blue);
+}
+
+.notice-background {
+    border-radius: 0.5rem;
+    z-index:2;
+    position: absolute;
+    height: 4rem;
+    width:12rem;
+    right: 4rem;
+    top: 2rem;
+    background-color: #646060;
+    opacity: 0.5;
+}
+.notice-text {
+    border-radius: 0.5rem;
+    z-index:2;
+    position: absolute;
+    height: 4rem;
+    width:12rem;
+    right: 4rem;
+    top: 2rem;
+}
+
+.create-todo input[type="text"] {
+	margin-top:0.5rem;
+    display: block;
+	width: 75%;
+	font-size: 1.125rem;
+	padding: 1rem 1.5rem;
+	color: var(--dark);
+	background-color: #FFF;
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	margin-bottom: 1.5rem;
+}
+
+.create-todo input[type="time"] {
+	margin-top:0.5rem;
+    display: block;
+	width: 75%;
+	font-size: 1.125rem;
+	padding: 1rem 1.5rem;
+	color: var(--dark);
+	background-color: #FFF;
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	margin-bottom: 1.5rem;
+}
+
+.create-todo .options {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.create-todo .options label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #FFF;
+	padding: 1.5rem;
+	box-shadow: var(--shadow);
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+	display: none;
+}
+
+
+.bubble {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 999px;
+	border: 2px solid var(--math);
+	box-shadow: var(--math-glow);
+}
+
+.section-background {
+    display: flex;
+    border-radius: 3rem;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    z-index: -1;
+    /*width: 80%; */
+    height: 35rem;
+    left: 20%;
+    right: 5%;
+    top: 120px;
+    height: 70%;
+    background-color: var(--dark-blue);
+    /*
+    display: flex;
+    border-radius: 3rem;
+    position: absolute;
+    z-index: -1;
+    width: 80%; 
+    height: 35rem;
+    left: 10rem;
+    top: 120px;
+    background-color: var(--dark-blue);
+    */
+  }
+
+.bubble.english {
+	border-color: var(--english);
+	box-shadow: var(--english-glow);
+}
+
+.bubble::after {
+	content: '';
+	display: block;
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+	background-color: var(--math);
+	box-shadow: var(--math-glow);
+	border-radius: 999px;
+	transition: 0.2s ease-in-out;
+}
+
+.bubble.english::after {
+	background-color: var(--english);
+	box-shadow: var(--english-glow);
+}
+
+input:checked ~ .bubble::after {
+	width: 10px;
+	height: 10px;
+	opacity: 1;
+}
+
+.create-todo .options label div {
+	color: var(--dark);
+	font-size: 1.125rem;
+	margin-top: 1rem;
+}
+
+.create-todo input[type="submit"] {
+	display: block;
+	width: 100%;
+	font-size: 1.125rem;
+	padding: 1rem 1.5rem;
+	color: #FFF;
+	font-weight: 700;
+	text-transform: uppercase;
+	background-color: var(--primary);
+	box-shadow: var(--math-glow);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: 0.2s ease-out;
+}
+
+.create-todo input[type="submit"]:hover {
+	opacity: 0.75;
+}
+
+.todo-list .list {
+	margin: 1rem 0;
+}
+
+.todo-list .todo-item {
+	display: flex;
+	align-items: center;
+	background-color: #FFF;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	margin-bottom: 1rem;
+}
+
+.todo-item label {
+	display: block;
+	margin-right: 1rem;
+	cursor: pointer;
+}
+
+.todo-item .todo-content {
+	flex: 1 1 0%;
+}
+
+.todo-item .todo-content input {
+	color: var(--dark);
+	font-size: 1.125rem;
+}
+
+.todo-item .actions {
+	display: flex;
+	align-items: center;
+}
+
+.todo-item .actions button {
+	display: block;
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+	color: #FFF;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+}
+
+.todo-item .actions button:hover {
+	opacity: 0.75;
+}
+
+.todo-item .actions .edit {
+	margin-right: 0.5rem;
+	background-color: var(--primary);
+}
+
+.todo-item .actions .delete {
+	background-color: var(--danger);
+}
+
+.todo-item.done .todo-content input {
+	text-decoration: line-through;
+	color: var(--grey);
+}
