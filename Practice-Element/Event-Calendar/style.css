@@ -1,0 +1,87 @@
+li{
+  list-style: none;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+.calendar-container{
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: auto;
+  gap: 1px 1px;
+  grid-template-areas: 
+    ". header"  /* dot means empty space to right */
+    "time-slots-container main";
+}
+
+.weekdays,
+.day-numbers{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day-numbers{
+  min-height: 2em;
+}
+
+.weekdays{
+  background: lightblue;
+}
+
+.header {
+  background: gray;
+  grid-area: header; /* associate with grid-template-areas */
+}
+
+.time-slots-container{
+  background: lightgray;
+  grid-area: time-slots-container;
+  justify-content: left;
+}
+
+.time-slots{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-slots li{
+  min-height: 60px;
+}
+
+.time-slots li::after{
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 100%;
+  height: 1px;
+  background: lightgray;
+  z-index: 1;
+}
+
+.events-container{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(36, 1fr); /* 9 rows, 4 15-minutes intervals in each hour */
+  grid-area: main;
+  position: relative;  /* need to move events around */
+}
+.slot{
+  position: absolute;
+  background: darkslategray;
+  border-radius: 5px;
+  z-index: 5;
+  color: white;
+  font-size: 12px;
+}
+
+.slot-1{
+  height: 30px; /* 30 minutes */
+  grid-row: 5; 
+    /* for 10am: if it starts at 9, abs(9-10) = 1 * 60 = 60 mins 
+    60/15 minutes interval = 4 + 1 = slot 5*/
+  grid-column: 5;
+}
