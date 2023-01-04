@@ -1,18 +1,6 @@
 var events = [];
-const colors = [
-  "red",
-  "green",
-  "blue",
-  "yellow",
-  "purple",
-  "cyan",
-  "gray",
-  "limegreen",
-  "pink",
-  "orange",
-  "magenta"
-];
-var businessStartHours = 9;
+const color = "rgba(167, 223, 217, 1)"; // TODO: edit color
+var startHours = 1;
 var timeslotInterval = 15;
 const daysInaWeek = 7;
 var eventContainer = document.getElementsByClassName("event-container")[0];
@@ -30,7 +18,7 @@ document.querySelector("button").onclick = function() {
     starttime: start.value,
     endtime: end.value,
     date: eventDate.value,
-    name: start.value
+    name: start.value //TODO: make this task name
   };
 
   id++;
@@ -58,28 +46,10 @@ function processEvents() {
     eventsByDay[evt.date][cell].push(evt);
   });
 }
-//sortEvents();
-
-// group by day
-// events.forEach(evt => {
-//   const cell = getCell(evt.starttime);
-
-//   // check if exist
-//   if (!eventsByDay[evt.date]) {
-//     eventsByDay[evt.date] = {};
-//     eventsByDay[evt.date][cell] = [];
-//   }
-
-//   if (!eventsByDay[evt.date][cell]) {
-//     eventsByDay[evt.date][cell] = [];
-//   }
-
-//   eventsByDay[evt.date][cell].push(evt);
-// });
 
 function getCell(starttime) {
   const h = +starttime.split(":")[0];
-  return h - businessStartHours;
+  return h - startHours;
 }
 /**
  * sort by starttime
@@ -140,8 +110,7 @@ function renderEvent(evt) {
   var eventStatus = document.createElement("div");
   var eventName = document.createElement("div");
   var eventTime = document.createElement("div");
-  const color = Math.floor(Math.random() * colors.length);
-  eventName.innerHTML = `${evt.id}`;
+  eventName.innerHTML = `${evt.id}`; //TODO: say task
   eventTime.innerHTML = `${evt.time}`;
 
   oneEvent.appendChild(eventStatus);
@@ -155,7 +124,7 @@ function renderEvent(evt) {
   /**
    * if two events have same start time
    */
-  oneEvent.style.background = colors[color];
+  oneEvent.style.background = color;
   oneEvent.style.width = evt.width + "%";
   oneEvent.style.left = evt.left + "%";
   oneEvent.style.zIndex = evt.zindex;
@@ -200,7 +169,7 @@ function getColumnPosition(startdate) {
 function getRowPosition(starttime) {
   const h = +starttime.split(":")[0];
   const m = +starttime.split(":")[1];
-  const totalMinutes = Math.abs(businessStartHours - h) * 60 + m;
+  const totalMinutes = Math.abs(startHours - h) * 60 + m;
   const rowPos = totalMinutes / timeslotInterval + 1;
 
   return rowPos;
