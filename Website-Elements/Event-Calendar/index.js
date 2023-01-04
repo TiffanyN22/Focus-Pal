@@ -1,5 +1,4 @@
 var events = [];
-const color = "rgba(167, 223, 217, 1)"; // TODO: color by subject?
 var startHours = 1;
 var timeslotInterval = 15;
 const daysInaWeek = 7;
@@ -18,7 +17,8 @@ document.querySelector("button").onclick = function() {
     starttime: start.value,
     endtime: end.value,
     date: eventDate.value,
-    name: start.value //TODO: make this task name
+    taskName: "Write Essay", //TODO: make this task name
+    taskColor: "rgba(167, 223, 217, 1)" //TODO: make this subject color
   };
 
   id++;
@@ -94,9 +94,15 @@ function loadEvents() {
           wMultiplier = 0.95;
         }
 
+        //format start/end time from 24 hours to 12 hours clock
+        const formattedStartHour = (event.starttime.split(":")[0] % 12) || 12;
+        const formattedStartMinute = event.starttime.split(":")[1];
+        const formattedEndHour = (event.endtime.split(":")[0] % 12) || 12;
+        const formattedEndMinute = event.endtime.split(":")[1];
+
         event["width"] = percW * wMultiplier;
         event["left"] = percW * offset;
-        event["time"] = `${event.starttime} - ${event.endtime}`;
+        event["time"] = `${formattedStartHour}:${formattedStartMinute} - ${formattedEndHour}:${formattedEndMinute}`;
         renderEvent(event);
 
         ++offset;
@@ -110,7 +116,7 @@ function renderEvent(evt) {
   var eventStatus = document.createElement("div");
   var eventName = document.createElement("div");
   var eventTime = document.createElement("div");
-  eventName.innerHTML = `${evt.id}`; //TODO: say task
+  eventName.innerHTML = `${evt.taskName}`;
   eventTime.innerHTML = `${evt.time}`;
 
   oneEvent.appendChild(eventStatus);
@@ -124,7 +130,7 @@ function renderEvent(evt) {
   /**
    * if two events have same start time
    */
-  oneEvent.style.background = color;
+  oneEvent.style.background = evt.taskColor;
   oneEvent.style.width = evt.width + "%";
   oneEvent.style.left = evt.left + "%";
   oneEvent.style.zIndex = evt.zindex;
