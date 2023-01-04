@@ -1,12 +1,25 @@
-/*
-Local storage: inspect element--> storage
-*/
 // interact with local storage
+var currentTaskId = 4; //TODO: update based on which task was selected
+
 export default class NotesAPI { //NotesAPI in main.js refers to class here with methods to get notes, static to access wherever we want
     static getAllNotes() {
         //if no existing notes, get empty array
         const notes = JSON.parse(localStorage.getItem("notesapp-notes") || "[]");
-        return notes.sort((a, b) => { //order by timestamp
+
+        //filter notes based on task 
+        let filteredNotes = notes.filter(note => note.taskId == currentTaskId);
+
+        //TODO: delete this comment, used for console.log to test
+        // var filteredNotes = notes.filter(checkTaskId);
+        // function checkTaskId(note){
+        //     console.log("taskID: " + note.taskId);
+        //     console.log("current task id:" + currentTaskId);
+        //     return note.taskId == currentTaskId;
+        // }
+        
+        
+        //order by timestamp
+        return filteredNotes.sort((a, b) => { 
             return new Date(a.updated) > new Date(b.updated) ? -1 : 1;
         });
     }
@@ -20,8 +33,9 @@ export default class NotesAPI { //NotesAPI in main.js refers to class here with 
             existing.title = noteToSave.title; //update title
             existing.body = noteToSave.body; //update body
             existing.updated = new Date().toISOString(); //update tiem
-        } else { //insert
+        } else { //insert new note
             noteToSave.id = Math.floor(Math.random() * 1000000); //generate random id, can incremenet on server side
+            noteToSave.taskId = currentTaskId;
             noteToSave.updated = new Date().toISOString(); //get iso timestamp
             notes.push(noteToSave);
         }

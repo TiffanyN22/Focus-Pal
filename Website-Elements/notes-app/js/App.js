@@ -32,7 +32,7 @@ export default class App {
         this.view.updateActiveNote(note); //tell view to update visible note
     }
 
-    _handlers() { //private
+    _handlers() {
         return {
             onNoteSelect: noteId => {
                 const selectedNote = this.notes.find(note => note.id == noteId); //find note as the one with the same id as what was passed in
