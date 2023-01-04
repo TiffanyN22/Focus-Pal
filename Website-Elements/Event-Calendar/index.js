@@ -1,5 +1,5 @@
 var events = [];
-const color = "rgba(167, 223, 217, 1)"; // TODO: edit color
+const color = "rgba(167, 223, 217, 1)"; // TODO: color by subject?
 var startHours = 1;
 var timeslotInterval = 15;
 const daysInaWeek = 7;

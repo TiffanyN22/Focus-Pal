@@ -11,6 +11,12 @@ body{
   background-color: rgba(167, 223, 217, 1)
 }
 
+.schedule-header{
+  text-align: center;
+  margin: 0px 0px;
+  color:rgb(0, 74, 69)
+}
+
 .calendar-container {
   display: grid;
   grid-template-columns: 50px auto;
@@ -21,12 +27,11 @@ body{
     "timeslots-container main";
 
   background-color: white;
-  margin: 50px 100px;
-  min-width: 450px;
+  margin: 25px 100px;
+  min-width: 300px;
 }
 
-.weekdays,
-.daynumbers {
+.weekdays{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -34,21 +39,42 @@ body{
 .weekdays {
   background: rgb(0, 74, 69);;
   color: whitesmoke;
+  text-align: center;
 }
 
-.daynumbers {
-  background: rgb(0, 108, 101);
-  color: whitesmoke;
-  min-height: 2em;
-}
-
-.daynumbers li {
-  border-right: 1px solid black;
+@media (max-width: 670px){
+  .weekday-s:after{
+    content: "S";
+  }
+  .weekday-m:after{
+    content: "M";
+  }
+  .weekday-t:after{
+    content: "T";
+  }
+  .weekday-w:after{
+    content: "W";
+  }
+  .weekday-th:after{
+    content: "Th";
+  }
+  .weekday-f:after{
+    content: "F";
+  }
+  .weekday-s span,
+  .weekday-m span, 
+  .weekday-t span, 
+  .weekday-w span, 
+  .weekday-th span, 
+  .weekday-f span{
+    display: none;
+  }
 }
 
 .header {
-  background: rgb(224, 189, 156);
+  background: rgb(0, 74, 69);
   grid-area: header; /* associate with grid-template-areas */
+  /* position: fixed; */
 }
 
 .timeslots-container {
