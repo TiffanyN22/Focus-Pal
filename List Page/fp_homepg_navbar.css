@@ -11,7 +11,7 @@
 }
 
 .side-nav{
-    width: 200px;
+    width: 180px;
     height: 100%;
     background: #468b87;
     position: fixed;
@@ -27,7 +27,7 @@
 }
 
 .logo-img{
-    width: 150px;
+    width: 120px;
 }
 
 .nav-links{
@@ -74,4 +74,21 @@
 }
 .nav-links li:nth-child(2):hover ~ .active{
     top: 60%;
+}
+
+.logo-icon{
+    display: none;
+    width: 45px;
+}
+
+@media only screen and (max-width: 600px){
+    .side-nav{
+        width: 100px;
+    }
+    .logo-icon{
+        display: block;
+    }
+    .logo-img{
+        display: none;
+    }
 }
