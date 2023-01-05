@@ -18,9 +18,39 @@ body{
   color:rgb(0, 74, 69)
 }
 
-.add-event-settings{
+.edit-event-settings{
+  align-items: center;
   margin-top: 20px;
   text-align: center;
+  vertical-align: top;
+}
+
+.delete-event-settings{
+  margin-top: 10px;
+  align-items: center;
+}
+
+.event-date-input, .event-time-input{
+  height: 18px;
+}
+
+.add-event-button, .delete-event-button{
+  background: white;
+  height: 22px;
+  border-radius: 3px;
+  font-size: 12px;
+  border-style: none;
+  transition: background-color 0.2s,
+    color 0.2s;
+  cursor: pointer;
+}
+.add-event-button:hover, .delete-event-button:hover,
+.event-time-input:hover, .event-date-input:hover {
+  background: rgb(0, 108, 101);
+  color: white;
+}
+.add-event-button:active, .delete-event-button:active{
+  background: rgb(0, 74, 69);
 }
 
 .calendar-container {
@@ -43,7 +73,7 @@ body{
 }
 
 .weekdays {
-  background: rgb(0, 74, 69);;
+  background: rgb(0, 74, 69);
   color: whitesmoke;
   text-align: center;
 }

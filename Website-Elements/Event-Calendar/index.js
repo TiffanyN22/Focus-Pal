@@ -10,8 +10,28 @@ var eventDate = document.getElementById("date");
 var start = document.getElementById("starttime");
 var end = document.getElementById("endtime");
 var id = 1;
+var deleteSelector = document.querySelector("#calendar-delete-selector");
+var deleteButton = document.getElementById("calendar-delete-button");
 
-document.querySelector("button").onclick = function() {
+//delete events
+/*
+document.querySelector(".calendar-delete-button").onclick = function() {
+  
+}
+
+function deleteEvent(evt){
+  events = events.filter(currentEvent => currentEvent.id != evt.id);
+
+  loadEvents();
+}
+
+function refreshDropdown(){
+  //TODO
+}
+*/
+
+// add events
+document.querySelector(".add-event-button").onclick = function() {
   const evt = {
     id: id,
     starttime: start.value,
@@ -20,6 +40,10 @@ document.querySelector("button").onclick = function() {
     taskName: "Write Essay", //TODO: make this task name
     taskColor: "rgba(167, 223, 217, 1)" //TODO: make this subject color
   };
+
+  console.log(deleteSelector);
+  let eventOption = new Option(id.toString(), id)
+  deleteSelector.add(eventOption, undefined);
 
   id++;
   eventContainer.innerHTML = "";
@@ -116,7 +140,7 @@ function renderEvent(evt) {
   var eventStatus = document.createElement("div");
   var eventName = document.createElement("div");
   var eventTime = document.createElement("div");
-  eventName.innerHTML = `${evt.taskName}`;
+  eventName.innerHTML = `${evt.id}: ${evt.taskName}`; //TODO: make this multiple lines instead of cutoff
   eventTime.innerHTML = `${evt.time}`;
 
   oneEvent.appendChild(eventStatus);
