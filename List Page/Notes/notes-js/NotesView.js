@@ -20,7 +20,6 @@ export default class NotesView {
             </div>
         `;
 
-        //listener
         const btnAddNote = this.root.querySelector(".notes__add");
         const inpTitle = this.root.querySelector(".notes__title");
         const inpBody = this.root.querySelector(".notes__body");
