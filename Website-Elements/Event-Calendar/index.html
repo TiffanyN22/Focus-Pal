@@ -12,11 +12,19 @@
 <body>
   <h1 class="schedule-header">Weekly Schedule Calendar</h1>
 
-  <div class="add-event-settings">
-    <input type="date" id='date'/>
-    <input type="time" id='starttime'/>
-    <input type="time" id='endtime'/>
-  <button>Add</button>
+  <div class="edit-event-settings">
+    <div class = "add-event-settings">
+      <input class="event-date-input" type="date" id='date'/>
+      <input class="event-time-input" type="time" id='starttime'/>
+      <input class="event-time-input" type="time" id='endtime'/>
+    <button class="add-event-button">Add</button>
+    </div>
+    <div class="delete-event-settings">
+      <select name="Delete Event" id="calendar-delete-selector">
+        <option value="default" selected>Element id to remove</option>
+      </select>
+      <button class="delete-event-button">Delete</button>
+    </div>
   </div>
   <div class="calendar-container">
     <div class="header">
