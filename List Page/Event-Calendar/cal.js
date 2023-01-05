@@ -14,60 +14,35 @@ var deleteSelector = document.querySelector("#calendar-delete-selector");
 var deleteButton = document.getElementById("calendar-delete-button");
 
 //delete events
-
 document.querySelector(".delete-event-button").onclick = function() {
   let deleteTaskId = deleteSelector.options[deleteSelector.selectedIndex].value;
+  if(deleteTaskId == "defaultPrompt"){
+    return;
+  }
+
+  // getEvents();
 
   Object.keys(eventsByDay).forEach(e => {
     const eventsForThisDay = eventsByDay[e];
-    //console.log(eventsForThisDay);
     Object.keys(eventsForThisDay).forEach(c => {
       const events = eventsForThisDay[c];
-      // events.sort(sortcomparer);
-      console.log("before", events);
-
       for (var i = 0; i < events.length; i++) {
         if (events[i].id.toString() == deleteTaskId){
           events.splice(i, 1); //remove that element
         }
       }
-      // events.filter(curEvent => curEvent.id.toString() != deleteTaskId);
-      console.log("after", events);
-
-      /*
-      events.filter(curEvent => curEvent.id.toString() != deleteTaskId);
-      console.log("after", events);
-
-      function testDelete(curEvent){
-        console.log("Current event:", curEvent.id);
-        console.log("Delete Task Id:", deleteTaskId);
-        console.log("Condition:", curEvent.id.toString() != deleteTaskId);
-        return curEvent.id.toString() != deleteTaskId;
-      }
-      */
-      // console.log("Current Event: ", events[0].id);
     })
   })
-  console.log(eventsByDay);
+  localStorage.setItem("calendar-events", JSON.stringify(eventsByDay));
   eventContainer.innerHTML = "";
-  // processEvents();
   loadEvents();
   deleteSelector.remove(deleteSelector.selectedIndex);
+  console.log(JSON.stringify(deleteSelector));
 }
-/*
-function deleteEvent(evt){
-  events = events.filter(currentEvent => currentEvent.id != evt.id);
-
-  loadEvents();
-}
-
-function refreshDropdown(){
-  //TODO
-}
-*/
 
 // add events
 document.querySelector(".add-event-button").onclick = function() {
+  // getEvents();
   const evt = {
     id: id,
     starttime: start.value,
@@ -77,18 +52,21 @@ document.querySelector(".add-event-button").onclick = function() {
     taskColor: "rgba(167, 223, 217, 1)" //TODO: make this subject color
   };
 
-  console.log(deleteSelector);
   deleteSelector.add(new Option(id.toString(), id), undefined);
-
+  // localStorage.setItem("calendar-events", JSON.stringify(evt));
+  
   id++;
   eventContainer.innerHTML = "";
   events = [];
   events.push(evt);
   processEvents();
   loadEvents();
+  localStorage.setItem("calendar-events", JSON.stringify(eventsByDay));
+  console.log(JSON.parse(localStorage.getItem("calendar-events") || "[]"))
 };
 
 function processEvents() {
+  eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]"); //TODO: load when page is loaded (instead of every time), delete selector
   events.forEach(evt => {
     const cell = getCell(evt.starttime);
 
@@ -131,6 +109,7 @@ function sortcomparer(e1, e2) {
 function loadEvents() {
   //sortEvents();
   //console.log(eventsByDay);
+  // eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]");
   Object.keys(eventsByDay).forEach(e => {
     const eventsForThisDay = eventsByDay[e];
     //console.log(eventsForThisDay);
