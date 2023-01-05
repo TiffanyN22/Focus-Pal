@@ -70,12 +70,11 @@ body{
 .weekdays{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-}
-
-.weekdays {
   background: rgb(0, 74, 69);
   color: whitesmoke;
   text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 @media (max-width: 670px){
@@ -208,29 +207,6 @@ body{
   float: left;
   border-left: 3px solid rgb(71, 235, 93);
   height: 100%;
-}
-
-.slot-1 {
-  /* is based on duration */
-  height: 45px;
-
-  /* based on start time */
-  grid-row: 17;
-
-  /* based on day of week */
-  grid-column: 1;
-}
-
-.slot-2 {
-  height: 45px;
-}
-
-.slot-3 {
-  height: 75px;
-}
-
-.slot-4 {
-  color: red;
 }
 
 .on-resize {
