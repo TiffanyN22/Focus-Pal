@@ -50,13 +50,24 @@
                 <option value="History">History</option>
                 </select> -->
                 
-                <label> Time to complete:</label>
-                <input type="time" id="time1"> 
+                <label> Time to complete (m):</label>
+                <!--<input type="time" id="time1"> -->
+                <input type='number' 
+                       id="estimate"
+                       name="estimate"
+                       placeholder="e.g. 15"
+                       min="1" max="60"
+                />
+                <!--<select name="time" id="time">
+                    <option value="minutes">minutes</option>
+                    <option value="seconds">seconds</option>
+                    <option value="hours">hours</option>
+                  </select>-->
                 <!-- figure out how to have it not be in hours of the day-->
                 <!-- <input type="time" step="300"> --> <!-- 5 min step -->
                 
 
-                <h4>Pick a category</h4>
+               <!-- <h4>Pick a category</h4>
 				<div class="options">
 					<label>
 						<input type="radio" name="category" id="category1" value="math" /> 
@@ -68,7 +79,14 @@
 						<span class="bubble english"></span>
 						<div>English</div>
 					</label>
-				</div>
+				</div> -->
+                <label> Category:</label>
+                <!--<input type="time" id="time1"> -->
+                <input type='text' 
+                       id="category"
+                       name="category"
+                       placeholder="e.g. Math"
+                />
 
                 <input type="submit" value="Add" />
                 

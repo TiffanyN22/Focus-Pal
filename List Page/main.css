@@ -35,7 +35,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'montserrat', sans-serif;
+	font-family: 'montserrat', sans-serif, Arial;
 }
 /*
 /* gets rid of outlines and backfill of task, time, and add*/
@@ -149,7 +149,11 @@ h6 {
 .left-border {
     position: absolute;
     z-index:0;
-    height: 100%;
+	height: 100%;
+  	overflow: auto;
+	/*min-height: 100vh;
+	height: auto;*/
+    /*margin-bottom:0;*/
     width: 15%;
     left: 0;
     top: 0;
@@ -213,7 +217,7 @@ h6 {
 	margin-bottom: 1.5rem;
 }
 
-.create-todo input[type="time"] {
+.create-todo input[type="number"] {
 	margin-top:0.5rem;
     display: block;
 	width: 75%;
@@ -365,6 +369,9 @@ input:checked ~ .bubble::after {
 
 .todo-item .todo-content {
 	flex: 1 1 0%;
+	/*	display: block;
+	width: 30rem;*/
+
 }
 
 .todo-item .todo-content input {
@@ -388,6 +395,11 @@ input:checked ~ .bubble::after {
 
 .todo-item .actions button:hover {
 	opacity: 0.75;
+}
+
+.todo-item .actions .notes {
+	margin-right: 0.5rem;
+	background-color: var(--dark);
 }
 
 .todo-item .actions .edit {
