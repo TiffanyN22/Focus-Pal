@@ -17,11 +17,18 @@ window.addEventListener('load', () => {
 			category: e.target.elements.category.value,
 			done: false,
 			createdAt: new Date().getTime()
-		}
+		} // making a todo object with different keys (content, estimate, category, con)
 
 		todos.push(todo);
 
-		localStorage.setItem('todos', JSON.stringify(todos));
+		if((content.value.length == 0)|| (category.value.length == 0) || (estimate.value.length == 0)){
+			alert('Please fill in all categories');
+		}
+		// add something where it will get angry if fields not populated
+		console.log('Hi Kara I am here too');
+
+
+		localStorage.setItem('todos', JSON.stringify(todos)); // makes objects into a string in local storage under 'todos'
 
 		// Reset the form
 		e.target.reset();
@@ -31,11 +38,13 @@ window.addEventListener('load', () => {
 
 	DisplayTodos()
 })
-
+ // make an array of just categories and assign them colors ( max 10 categories )
 function DisplayTodos () {
+
 	const todoList = document.querySelector('#todo-list');
 	todoList.innerHTML = "";
 
+	//todos.sort
 	todos.forEach(todo => {
 		const todoItem = document.createElement('div');
 		todoItem.classList.add('todo-item');
@@ -43,9 +52,8 @@ function DisplayTodos () {
 		const label = document.createElement('label');
 		const input = document.createElement('input');
 		const span = document.createElement('span');
-        const category = document.createElement('div'); //new
 		const content = document.createElement('div');
-        const estimate = document.createElement('div'); //new
+		const category = document.createElement('div');//new
 		const actions = document.createElement('div');
 		const edit = document.createElement('button');
 		const notes = document.createElement('button');
@@ -53,22 +61,28 @@ function DisplayTodos () {
 
 		input.type = 'checkbox';
 		input.checked = todo.done;
-		span.classList.add('bubble');
-		category.classList.add('todo-category'); //new
-        content.classList.add('todo-content');
-        estimate.classList.add('todo-estimate'); //new
+		span.classList.add('bubble'); // figure out how to put bubble after?
+		//Category, bubble, todo, time
+		/*if (todo.category == 'english') {
+			span.classList.add('english');
+		} else {
+			span.classList.add('math');
+		}*/
+		content.classList.add('todo-content');
+		category.classList.add('todo-category');
+		//estimate.classList.add('todo-estimate');
 		actions.classList.add('actions');
 		notes.classList.add('notes');
 		edit.classList.add('edit');
 		deleteButton.classList.add('delete');
+		//let value = todo.category + ': ' + todo.content + ' (' + todo.estimate +'m)';
+		// what I want to put out : `<input type="text" size="40" value="${todo.category}: ${todo.content} (${todo.estimate}m) " readonly>`;
+		//content.innerHTML =  `<input type="text" size="40" value=${value} readonly>`;
+		category.innerHTML = `<input type="text" size="10" value="${todo.content} " readonly>`;
+		content.innerHTML =  `<input type="text" size="10" value="${todo.category}: " readonly>`;
+		estimate.innerHTML =  `<input type="text" size="5" value="(${todo.estimate}m)" readonly>`;
 
-		
-        //content.innerHTML = `<input type="text" size="40" value="${todo.category}: ${todo.content} (${todo.estimate}m) " readonly>`;
-        let size = todo.content.length + 5;
-        category.innerHTML =  `<input type="text" size="30" value="${todo.category}: " readonly>`;
-        content.innerHTML = `<input type="text" size="${size}" value="${todo.content} " readonly>`;
-        estimate.innerHTML = `<input type="text" size="10" value="(${todo.estimate}m)" readonly>`;
-
+		//category.innerHTML = `<input type="text" size="40" value="${todo.category}: " readonly>`;
 		notes.innerHTML = "Notes";
 		edit.innerHTML = 'Edit';
 		deleteButton.innerHTML = 'Delete';
@@ -79,9 +93,9 @@ function DisplayTodos () {
 		actions.appendChild(edit);
 		actions.appendChild(deleteButton);
 		todoItem.appendChild(label);
-        todoItem.appendChild(category); //new
 		todoItem.appendChild(content);
-        todoItem.appendChild(estimate);//new
+		todoItem.appendChild(category);
+		todoItem.appendChild(estimate);
 		todoItem.appendChild(actions);
 
 		todoList.appendChild(todoItem);
@@ -109,20 +123,55 @@ function DisplayTodos () {
 		})
 
 		edit.addEventListener('click', (e) => {
+			//change "Create a" to "Edit"
+			//change add to save
+			//fill in stuff with data
+			console.log('Someone clicked the edit button');
+
+
+			//window.alert("Please fill in all 3 forms before submitting the form.");
+			//flip back
 			const input = content.querySelector('input');
 			input.removeAttribute('readonly');
 			input.focus();
 			input.addEventListener('blur', (e) => {
-                console.log('clicked off');
+				console.log('Hi Kara I am here');
+				let cat = prompt('Enter Category:');
+				if (result) {
+				// User clicked OK and entered a value
+					todo.category = cat;
+					console.log
+				} else {
+				// User clicked Cancel
+				}
+				
+				let cont = prompt('Enter Todo:');
+				if (result) {
+				// User clicked OK and entered a value
+					todo.content = cont;
+				} else {
+				// User clicked Cancel
+				}
+		
+				let est = prompt('Enter Time:');
+				if (result) {
+				// User clicked OK and entered a value
+					todo.estimate = est;
+				} else {
+				// User clicked Cancel
+				}
 				input.setAttribute('readonly', true);
-                console.log('set readonly attribute');
 				todo.content = e.target.value;
-                console.log('targetvalue:'+ e.target.value);
-				/*todo.estimate = e.target.estimate;*/
-				localStorage.setItem('todos', JSON.stringify(todos));
-                console.log('todos');
+
+				//content.innerHTML = `<input type="text" size="40" value="${e.target.value} " readonly>`;
+				//todo.estimate = e.target.estimate;
+				//localStorage.setItem('todos', JSON.stringify(todos));
+				//todo[index].content.value= 
+
 				DisplayTodos()
 			})
+
+			e.target.reset()
 		})
 
 

@@ -373,6 +373,19 @@ input:checked ~ .bubble::after {
 	width: 30rem;*/
 
 }
+/*  new  v */
+.todo-item .todo-category {
+	flex: 1 1 0%;
+	/*	display: block;
+	*/
+	width: 2rem;
+
+}
+/*  new  v */
+.todo-item .todo-category input {
+	color: var(--dark);
+	font-size: 1.125rem;
+}
 
 .todo-item .todo-content input {
 	color: var(--dark);
@@ -415,3 +428,10 @@ input:checked ~ .bubble::after {
 	text-decoration: line-through;
 	color: var(--grey);
 }
+
+/*  new  v */
+.todo-item.done .todo-category input {
+	text-decoration: line-through;
+	color: var(--grey);
+}
+
