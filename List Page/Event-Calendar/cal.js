@@ -5,14 +5,28 @@ const daysInaWeek = 7;
 var eventContainer = document.getElementsByClassName("event-container")[0];
 var maindims = eventContainer.getBoundingClientRect();
 var sections = daysInaWeek;
-var eventsByDay = {};
+var eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]");
 var eventDate = document.getElementById("date");
 var start = document.getElementById("starttime");
 var end = document.getElementById("endtime");
-var id = 1;
+var id = Number(localStorage.getItem("calendar-id") || "1");
 var deleteSelector = document.querySelector("#calendar-delete-selector");
 var deleteButton = document.getElementById("calendar-delete-button");
+var selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").split(",");
 
+Window.onload = loadPage();
+
+function loadPage(){
+  console.log("Running loadPage()");
+  //update selector with data from storage
+  for(let i=1; i < selectorValuesStr.length; i++){
+    deleteSelector.add(new Option(selectorValuesStr[i], Number(selectorValuesStr[i])), undefined);
+  }
+
+  //update page with events from storage
+  processEvents();
+  loadEvents();
+}
 //delete events
 document.querySelector(".delete-event-button").onclick = function() {
   let deleteTaskId = deleteSelector.options[deleteSelector.selectedIndex].value;
@@ -20,8 +34,7 @@ document.querySelector(".delete-event-button").onclick = function() {
     return;
   }
 
-  // getEvents();
-
+  //remove event from eventsByDay and calendar screen
   Object.keys(eventsByDay).forEach(e => {
     const eventsForThisDay = eventsByDay[e];
     Object.keys(eventsForThisDay).forEach(c => {
@@ -37,7 +50,10 @@ document.querySelector(".delete-event-button").onclick = function() {
   eventContainer.innerHTML = "";
   loadEvents();
   deleteSelector.remove(deleteSelector.selectedIndex);
-  console.log(JSON.stringify(deleteSelector));
+
+  //remove event from selector
+  selectorValuesStr.splice(selectorValuesStr.indexOf(deleteTaskId.toString()), 1);
+  updateDropdownStorage();
 }
 
 // add events
@@ -53,9 +69,12 @@ document.querySelector(".add-event-button").onclick = function() {
   };
 
   deleteSelector.add(new Option(id.toString(), id), undefined);
+  selectorValuesStr.push(id.toString());
+  updateDropdownStorage();
   // localStorage.setItem("calendar-events", JSON.stringify(evt));
   
   id++;
+  localStorage.setItem("calendar-id", id.toString());
   eventContainer.innerHTML = "";
   events = [];
   events.push(evt);
@@ -64,6 +83,19 @@ document.querySelector(".add-event-button").onclick = function() {
   localStorage.setItem("calendar-events", JSON.stringify(eventsByDay));
   console.log(JSON.parse(localStorage.getItem("calendar-events") || "[]"))
 };
+
+function updateDropdownStorage(){
+  /*
+  let selectorValues = [];
+  for(let i=0; i<deleteSelector.length; i++){
+    selectorValues.push(deleteSelector.options[i].value);
+  }
+  */
+  
+  localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
+  console.log("selector", localStorage.getItem("calendar-delete-selector-value"));
+  console.log("selector array", selectorValuesStr);
+}
 
 function processEvents() {
   eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]"); //TODO: load when page is loaded (instead of every time), delete selector
