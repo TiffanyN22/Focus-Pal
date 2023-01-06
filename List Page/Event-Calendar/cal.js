@@ -27,6 +27,7 @@ function loadPage(){
   processEvents();
   loadEvents();
 }
+
 //delete events
 document.querySelector(".delete-event-button").onclick = function() {
   let deleteTaskId = deleteSelector.options[deleteSelector.selectedIndex].value;
@@ -49,16 +50,15 @@ document.querySelector(".delete-event-button").onclick = function() {
   localStorage.setItem("calendar-events", JSON.stringify(eventsByDay));
   eventContainer.innerHTML = "";
   loadEvents();
-  deleteSelector.remove(deleteSelector.selectedIndex);
 
   //remove event from selector
+  deleteSelector.remove(deleteSelector.selectedIndex);
   selectorValuesStr.splice(selectorValuesStr.indexOf(deleteTaskId.toString()), 1);
-  updateDropdownStorage();
+  localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
 }
 
 // add events
 document.querySelector(".add-event-button").onclick = function() {
-  // getEvents();
   const evt = {
     id: id,
     starttime: start.value,
@@ -68,37 +68,26 @@ document.querySelector(".add-event-button").onclick = function() {
     taskColor: "rgba(167, 223, 217, 1)" //TODO: make this subject color
   };
 
+  //update selector
   deleteSelector.add(new Option(id.toString(), id), undefined);
   selectorValuesStr.push(id.toString());
-  updateDropdownStorage();
-  // localStorage.setItem("calendar-events", JSON.stringify(evt));
-  
-  id++;
-  localStorage.setItem("calendar-id", id.toString());
+  localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
+
+  //update calendar
   eventContainer.innerHTML = "";
   events = [];
   events.push(evt);
   processEvents();
   loadEvents();
+  
+  //update storage
+  id++;
+  localStorage.setItem("calendar-id", id.toString());
   localStorage.setItem("calendar-events", JSON.stringify(eventsByDay));
-  console.log(JSON.parse(localStorage.getItem("calendar-events") || "[]"))
 };
 
-function updateDropdownStorage(){
-  /*
-  let selectorValues = [];
-  for(let i=0; i<deleteSelector.length; i++){
-    selectorValues.push(deleteSelector.options[i].value);
-  }
-  */
-  
-  localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
-  console.log("selector", localStorage.getItem("calendar-delete-selector-value"));
-  console.log("selector array", selectorValuesStr);
-}
-
 function processEvents() {
-  eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]"); //TODO: load when page is loaded (instead of every time), delete selector
+  eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]");
   events.forEach(evt => {
     const cell = getCell(evt.starttime);
 
@@ -129,7 +118,6 @@ function sortcomparer(e1, e2) {
   const t2start = timeFromString(e2.starttime);
   const t2end = timeFromString(e2.endtime);
 
-  //return t1start.getTime() - t2start.getTime();
   const t1 = +(t1end - t1start);
   const t2 = +(t2end - t2start);
 
@@ -139,12 +127,8 @@ function sortcomparer(e1, e2) {
 //loadEvents();
 
 function loadEvents() {
-  //sortEvents();
-  //console.log(eventsByDay);
-  // eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]");
   Object.keys(eventsByDay).forEach(e => {
     const eventsForThisDay = eventsByDay[e];
-    //console.log(eventsForThisDay);
     Object.keys(eventsForThisDay).forEach(c => {
       const events = eventsForThisDay[c];
       events.sort(sortcomparer);
