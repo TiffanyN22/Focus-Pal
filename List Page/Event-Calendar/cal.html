@@ -17,7 +17,10 @@
       <input class="event-date-input" type="date" id='date'/>
       <input class="event-time-input" type="time" id='starttime'/>
       <input class="event-time-input" type="time" id='endtime'/>
-    <button class="add-event-button">Add</button>
+      <select name="Add Event" class="add-selector" id="calendar-add-selector">
+        <option value="defaultPrompt" selected>Select Task</option>
+      </select>
+      <button class="add-event-button">Add</button>
     </div>
     <div class="delete-event-settings">
       <select name="Delete Event" id="calendar-delete-selector">

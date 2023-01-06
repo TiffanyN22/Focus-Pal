@@ -10,6 +10,7 @@ var eventDate = document.getElementById("date");
 var start = document.getElementById("starttime");
 var end = document.getElementById("endtime");
 var id = Number(localStorage.getItem("calendar-id") || "1");
+var taskSelector = document.querySelector("#calendar-add-selector");
 var deleteSelector = document.querySelector("#calendar-delete-selector");
 var deleteButton = document.getElementById("calendar-delete-button");
 var selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").split(",");
@@ -17,10 +18,17 @@ var selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").s
 Window.onload = loadPage();
 
 function loadPage(){
-  console.log("Running loadPage()");
-  //update selector with data from storage
+  //update delete selector with data from storage
   for(let i=1; i < selectorValuesStr.length; i++){
     deleteSelector.add(new Option(selectorValuesStr[i], Number(selectorValuesStr[i])), undefined);
+  }
+
+  //update add selector
+  let todosData = JSON.parse(localStorage.getItem("todos")|| "[]");
+  console.log("todos", todosData);
+  for(let i=0; i<todosData.length; i++){
+    console.log(todosData[i].content);
+    taskSelector.add(new Option(todosData[i].content, todosData[i].content), undefined) //TODO: create task id?
   }
 
   //update page with events from storage
@@ -59,12 +67,17 @@ document.querySelector(".delete-event-button").onclick = function() {
 
 // add events
 document.querySelector(".add-event-button").onclick = function() {
+  let addValue = taskSelector.options[taskSelector.selectedIndex].value;
+  if(addValue == "defaultPrompt"){
+    return;
+  }
+  
   const evt = {
     id: id,
     starttime: start.value,
     endtime: end.value,
     date: eventDate.value,
-    taskName: "Write Essay", //TODO: make this task name
+    taskName: addValue,
     taskColor: "rgba(167, 223, 217, 1)" //TODO: make this subject color
   };
 
