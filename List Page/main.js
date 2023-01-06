@@ -6,16 +6,29 @@ window.addEventListener('load', () => {
     also, encoding with JSON.string so JSON.parse unlocks it somehow
     todos is a global variable so we can use it anywhere without const?*/
 	todos = JSON.parse(localStorage.getItem('todos')) || [];
+	var allCategories = JSON.parse(localStorage.getItem('todos-categories') || []);
 	const newTodoForm = document.querySelector('#new-todo-form');
+
+	var taskColors = ["rgb(255, 158, 184)", "rgb(245, 151, 151)", "rgb(245, 207, 151)", "rgb(222, 222, 0)", "rgb(151, 245, 185)","rgb(151, 245, 241)", "rgb(158, 217, 255)", "rgb(158, 164, 255)", "rgb(207, 158, 255)", "rgb(255, 158, 155)"]; //for calendar
 
 	newTodoForm.addEventListener('submit', e => {
 		e.preventDefault();
+
+		//check color
+		if(!allCategories.includes(e.target.elements.category.value)){
+			allCategories.push(e.target.elements.category.value);
+			localStorage.setItem('todos-categories', JSON.stringify(allCategories));
+		}
+		// console.log("allCategories", allCategories);
+		// console.log("index", allCategories.indexOf(e.target.elements.category.value));
+		// console.log("color", taskColors[allCategories.indexOf(e.target.elements.category.value)%taskColors.length]);
 
 		const todo = {
 			content: e.target.elements.content.value,
 			estimate: e.target.elements.estimate.value,
 			category: e.target.elements.category.value,
 			done: false,
+			color: taskColors[allCategories.indexOf(e.target.elements.category.value)%taskColors.length],
 			createdAt: new Date().getTime()
 		}
 

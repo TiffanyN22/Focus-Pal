@@ -14,6 +14,7 @@ var taskSelector = document.querySelector("#calendar-add-selector");
 var deleteSelector = document.querySelector("#calendar-delete-selector");
 var deleteButton = document.getElementById("calendar-delete-button");
 var selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").split(",");
+var todosData = "[]";
 
 Window.onload = loadPage();
 
@@ -24,10 +25,10 @@ function loadPage(){
   }
 
   //update add selector
-  let todosData = JSON.parse(localStorage.getItem("todos")|| "[]");
+  todosData = JSON.parse(localStorage.getItem("todos")|| "[]");
   console.log("todos", todosData);
   for(let i=0; i<todosData.length; i++){
-    console.log(todosData[i].content);
+    // console.log(todosData[i].content);
     taskSelector.add(new Option(todosData[i].content, todosData[i].content), undefined) //TODO: create task id?
   }
 
@@ -65,6 +66,7 @@ document.querySelector(".delete-event-button").onclick = function() {
   localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
 }
 
+//clear all
 document.querySelector(".clear-all-events-button").onclick = function() {
   //restart id
   id = 1;
@@ -103,13 +105,20 @@ document.querySelector(".add-event-button").onclick = function() {
     return;
   }
   
+  let currentTaskColor = "red";
+  for(let i=0; i<todosData.length; i++){
+    if(todosData[i].content == addValue){
+      currentTaskColor = todosData[i].color;
+      break;
+    }
+  }
   const evt = {
     id: id,
     starttime: start.value,
     endtime: end.value,
     date: eventDate.value,
     taskName: addValue,
-    taskColor: "rgba(167, 223, 217, 1)" //TODO: make this subject color
+    taskColor: currentTaskColor
   };
 
   //update selector
