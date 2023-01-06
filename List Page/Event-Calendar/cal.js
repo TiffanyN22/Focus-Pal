@@ -65,10 +65,41 @@ document.querySelector(".delete-event-button").onclick = function() {
   localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
 }
 
+document.querySelector(".clear-all-events-button").onclick = function() {
+  //restart id
+  id = 1;
+  localStorage.setItem("calendar-id", id.toString());
+
+  //clear delete selector
+  deleteSelector.innerHTML = null;
+  deleteSelector.add(new Option("Element id to remove", "defaultPrompt"), undefined);
+  selectorValuesStr=["{}"];
+  localStorage.setItem("calendar-delete-selector-value", selectorValuesStr);
+
+  //remove all events
+  Object.keys(eventsByDay).forEach(e => {
+    const eventsForThisDay = eventsByDay[e];
+    Object.keys(eventsForThisDay).forEach(c => {
+      const events = eventsForThisDay[c];
+      for (let i = 0; i < events.length; i++) {
+        events.splice(i, 1); //remove that element
+      }
+    })
+  })
+  localStorage.setItem("calendar-events", JSON.stringify(eventsByDay));
+  eventContainer.innerHTML = "";
+  loadEvents();
+}
+
 // add events
 document.querySelector(".add-event-button").onclick = function() {
   let addValue = taskSelector.options[taskSelector.selectedIndex].value;
   if(addValue == "defaultPrompt"){
+    return;
+  }
+
+  if(start.value >= end.value){
+    alert("End time must be after start time");
     return;
   }
   

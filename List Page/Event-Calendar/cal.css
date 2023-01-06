@@ -34,7 +34,7 @@ body{
   height: 18px;
 }
 
-.add-event-button, .delete-event-button{
+.add-event-button, .delete-event-button, .clear-all-events-button{
   background: white;
   height: 22px;
   border-radius: 3px;
@@ -44,12 +44,12 @@ body{
     color 0.2s;
   cursor: pointer;
 }
-.add-event-button:hover, .delete-event-button:hover,
+.add-event-button:hover, .delete-event-button:hover, .clear-all-events-button:hover,
 .event-time-input:hover, .event-date-input:hover {
   background: rgb(0, 108, 101);
   color: white;
 }
-.add-event-button:active, .delete-event-button:active{
+.add-event-button:active, .delete-event-button:active, .clear-all-events-button:active{
   background: rgb(0, 74, 69);
 }
 
