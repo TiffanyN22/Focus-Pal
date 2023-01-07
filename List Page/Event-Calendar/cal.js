@@ -1,5 +1,5 @@
 var events = [];
-var startHours = 1;
+var startHours = 0;
 var timeslotInterval = 15;
 const daysInaWeek = 7;
 var eventContainer = document.getElementsByClassName("event-container")[0];

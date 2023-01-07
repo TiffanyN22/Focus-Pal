@@ -1,5 +1,6 @@
 // interact with local storage
-var currentTaskId = 4; //TODO: update based on which task was selected
+var currentTask = localStorage.getItem("currentTodoItem") || "default"; //TODO: make sure works with nav bar
+var otherNotesStorage = JSON.parse(localStorage.getItem("notesapp-notes") || "[]").filter(note => note.taskId != currentTask);;
 
 export default class NotesAPI { //NotesAPI in main.js refers to class here with methods to get notes, static to access wherever we want
     static getAllNotes() {
@@ -7,17 +8,9 @@ export default class NotesAPI { //NotesAPI in main.js refers to class here with 
         const notes = JSON.parse(localStorage.getItem("notesapp-notes") || "[]");
 
         //filter notes based on task 
-        let filteredNotes = notes.filter(note => note.taskId == currentTaskId);
+        let filteredNotes = notes.filter(note => note.taskId == currentTask);
+        // otherNotesStorage = notes.filter(note => note.taskId != currentTask);
 
-        //TODO: delete this comment, used for console.log to test
-        // var filteredNotes = notes.filter(checkTaskId);
-        // function checkTaskId(note){
-        //     console.log("taskID: " + note.taskId);
-        //     console.log("current task id:" + currentTaskId);
-        //     return note.taskId == currentTaskId;
-        // }
-        
-        
         //order by timestamp
         return filteredNotes.sort((a, b) => { 
             return new Date(a.updated) > new Date(b.updated) ? -1 : 1;
@@ -35,18 +28,20 @@ export default class NotesAPI { //NotesAPI in main.js refers to class here with 
             existing.updated = new Date().toISOString(); //update tiem
         } else { //insert new note
             noteToSave.id = Math.floor(Math.random() * 1000000); //generate random id, can incremenet on server side
-            noteToSave.taskId = currentTaskId;
+            noteToSave.taskId = currentTask;
             noteToSave.updated = new Date().toISOString(); //get iso timestamp
             notes.push(noteToSave);
         }
 
-        localStorage.setItem("notesapp-notes", JSON.stringify(notes)); //resave local storage key, override existing entry
+        const allNotes = notes.concat(otherNotesStorage);
+        localStorage.setItem("notesapp-notes", JSON.stringify(allNotes)); //resave local storage key, override existing entry
     }
 
     static deleteNote(id) {
         const notes = NotesAPI.getAllNotes();
         const newNotes = notes.filter(note => note.id != id); //get every note except for the one with the same id
 
-        localStorage.setItem("notesapp-notes", JSON.stringify(newNotes));
+        const allNotes = newNotes.concat(otherNotesStorage);
+        localStorage.setItem("notesapp-notes", JSON.stringify(allNotes));
     }
 }

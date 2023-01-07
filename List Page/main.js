@@ -118,7 +118,8 @@ function DisplayTodos () {
 		})
 
 		notes.addEventListener('click', (e) => {
-			/*add part where it goes to a notes page*/
+			localStorage.setItem('currentTodoItem', content.querySelector('input').value);
+			window.location.href='Notes/notes.html';
 		})
 
 		edit.addEventListener('click', (e) => {
