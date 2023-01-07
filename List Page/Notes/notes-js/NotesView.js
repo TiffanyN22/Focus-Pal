@@ -9,8 +9,8 @@ export default class NotesView {
         //use javascript to render view
         this.root.innerHTML = `
             <div class="notes__preview">
-                <input class="notes__title" type="text" placeholder="New Note...">
-                <textarea class="notes__body">Take Note...</textarea>
+                <input class="notes__title" type="text" placeholder="Title">
+                <textarea class="notes__body">Take notes here...</textarea>
             </div>
             <div class="notes__sidebar">
                 <div class="notes__container">

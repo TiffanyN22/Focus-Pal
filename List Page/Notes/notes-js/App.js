@@ -40,8 +40,8 @@ export default class App {
             },
             onNoteAdd: () => {
                 const newNote = { //default title and body
-                    title: "New Note",
-                    body: "Take note..."
+                    title: "Title",
+                    body: "Take note here..."
                 };
 
                 NotesAPI.saveNote(newNote);

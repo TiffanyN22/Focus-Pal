@@ -15,7 +15,8 @@ body{
   text-align: center;
   margin: 0px 0px;
   margin-top: 30px;
-  color:rgb(0, 74, 69)
+  color:rgb(0, 74, 69);
+  font-family: 'montserrat', sans-serif, Arial;
 }
 
 .edit-event-settings{
@@ -75,6 +76,7 @@ body{
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
+  font-family: 'montserrat', sans-serif, Arial;
 }
 
 @media (max-width: 670px){
@@ -127,6 +129,7 @@ body{
 
 .timeslots li {
   min-height: 60px;
+  font-family: 'montserrat', sans-serif, Arial;
 }
 
 .timeslots li::after {
@@ -175,6 +178,7 @@ body{
   margin-top: 1px;
   border-color: rgb(3, 155, 229);
   outline: none;
+  font-family: 'montserrat', sans-serif, Arial;
 }
 
 .slot::before {
