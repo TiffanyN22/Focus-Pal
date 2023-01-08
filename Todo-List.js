@@ -2,18 +2,23 @@
 /*math english, business personal
 math = business, english = personal*/
 window.addEventListener('load', () => {
-    /*if there are to-do's saved in local storage, gettem!
-    also, encoding with JSON.string so JSON.parse unlocks it somehow
-    todos is a global variable so we can use it anywhere without const?*/
 	todos = JSON.parse(localStorage.getItem('todos')) || [];
-	var allCategories = JSON.parse(localStorage.getItem('todos-categories') || []);
+	var allCategories = [];
+
+	if (localStorage.getItem('todos-categories') == null){
+		localStorage.setItem('todos-categories', JSON.stringify([])); // setting empty array
+	}
+	else {
+		allCategories = JSON.parse(localStorage.getItem('todos-categories') || []);
+	}
+
 	const newTodoForm = document.querySelector('#new-todo-form');
 
 	var taskColors = ["rgb(255, 158, 184)", "rgb(245, 151, 151)", "rgb(245, 207, 151)", "rgb(222, 222, 0)", "rgb(151, 245, 185)","rgb(151, 245, 241)", "rgb(158, 217, 255)", "rgb(158, 164, 255)", "rgb(207, 158, 255)", "rgb(255, 158, 155)"]; //for calendar
 
 	newTodoForm.addEventListener('submit', e => {
 		e.preventDefault();
-
+		
 		//check color
 		if(!allCategories.includes(e.target.elements.category.value)){
 			allCategories.push(e.target.elements.category.value);

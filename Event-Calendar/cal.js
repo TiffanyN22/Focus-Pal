@@ -13,7 +13,16 @@ var id = Number(localStorage.getItem("calendar-id") || "1");
 var taskSelector = document.querySelector("#calendar-add-selector");
 var deleteSelector = document.querySelector("#calendar-delete-selector");
 var deleteButton = document.getElementById("calendar-delete-button");
-var selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").split(",");
+
+var selectorValuesStr = [];
+
+if (localStorage.getItem("calendar-delete-selector-value") == null){
+  localStorage.setItem('calendar-delete-selector-value', JSON.stringify("{}")); // setting empty array
+} else {
+  selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").split(",");
+}
+
+
 var todosData = "[]";
 
 Window.onload = loadPage();
