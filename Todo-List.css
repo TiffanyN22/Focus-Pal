@@ -58,13 +58,6 @@ input:not([type="radio"]):not([type="checkbox"]), button {
     width:100%;
     background-color: var(--light-gray);
     overflow: hidden;
-  }
-
-* {
-	margin: none;
-	padding: none;
-	box-sizing: border-box;
-	font-family: 'montserrat', sans-serif;
 }
 
 
@@ -145,21 +138,23 @@ h6 {
     top: 120px;
     background-color: var(--dark-blue);
   }*/
+/*
 
 .left-border {
     position: absolute;
     z-index:0;
 	height: 100%;
   	overflow: auto;
-	/*min-height: 100vh;
-	height: auto;*/
-    /*margin-bottom:0;*/
+	min-height: 100vh;
+	height: auto;
+    margin-bottom:0;
     width: 15%;
     left: 0;
     top: 0;
     background-color: var(--darkest-blue);
     margin-top: 0rem;
 }
+*/
 
 .calendar-button {
     border-radius: 1rem;

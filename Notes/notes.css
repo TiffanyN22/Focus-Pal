@@ -5,7 +5,7 @@ body {
     height: 100%;
     /* margin: 0; */
     background-color: rgba(167, 223, 217, 1);
-    margin-left: 150px; /*TODO: edit based on navbar*/
+    margin-left: 200px;
 }
 
 .header-container{
@@ -30,6 +30,7 @@ body {
     text-align: center;
     font-size: 50px;
     margin-bottom: 0;
+    margin-top: 35px;
     display: inline-block;
     /* margin-right: 50px; */
 }

@@ -15,8 +15,8 @@ body {
   border-radius: 20px;
   background: rgba(221, 246, 240, 1);
   color: #224D54; 
-  width: 230px;
-  height: 50px;
+  width: 270px;
+  height: 80px;
 }
 
 .timer__part {
@@ -31,14 +31,14 @@ body {
   border-radius: 50%;
   border: none;
   color: white;
-  background: #8208e6;
+  background: #EA40A4;
   cursor: pointer;
 }
 
 .timer__btn--start {
-  background: #468B87;
+  background: #ff5b57;
 }
 
 .timer__btn--stop {
-  background: #1da8c7;
+  background: #ff8d8b;
 }

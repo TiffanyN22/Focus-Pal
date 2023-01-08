@@ -1,0 +1,111 @@
+<!-- referenced tutorial: https://www.youtube.com/watch?v=6eFwtaZf6zc -->
+<!-- nav bar tutorial: https://youtu.be/Fx_NpAPM-iU -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusPal To Do List</title>
+
+    <!-- CSS Import -->
+	<link rel="stylesheet" href="Todo-List.css" />
+    <link rel = "stylesheet" href="nav-bar/fp_homepg_navbar.css">
+	<!-- End of CSS Import -->
+</head>
+<body>
+    <div class="topnav">
+        <!-- Top header -->
+        <h1>
+            Welcome to Focus Pal!
+            <style>
+            </style> 
+        </h1>
+    <!-- End of Top header -->
+    </div>
+
+    <div class="section-background"></div>
+
+    <main class="app">
+        <!-- New Todo -->
+		<section class="create-todo">
+			<h3>Create a task</h3>
+			<form id="new-todo-form">
+                <label> Task:</label>
+                <input 
+					type="text" 
+					placeholder="e.g. Write paper"
+					name="content"
+					id="content" />
+
+                <label> Time to complete (m):</label>
+                <!--<input type="time" id="time1"> -->
+                <input type='number' 
+                       id="estimate"
+                       name="estimate"
+                       placeholder="e.g. 15"
+                       min="1" max="60"
+                />
+
+                <label> Category:</label>
+
+                <input type='text' 
+                       id="category"
+                       name="category"
+                       placeholder="e.g. Math"
+                />
+
+                <input type="submit" value="Add" />
+                
+            </form>
+            <!-- add another form to ask to add a category / figure out how to use inputted things to add to existing drop downs-->
+		</section>
+
+        </section>
+		<!-- End of New Todo -->
+
+        <!-- Todo List -->
+		<section class="todo-list">
+			<h3>List of tasks</h3> 
+            <!-- h3 is the size not number of headers -->
+			<div class="list" id="todo-list"></div>
+
+        <!-- Notification-->
+        <!--  
+        <section class="notification">
+            <div class="notice-background">
+                <h6>Notice! You are scheduled to
+                    be working on Essay for the 
+                    next hour</h6>
+            </div>
+            <div class="notice-text">
+                <h6>Notice! You are scheduled to
+                    be working on Essay for the 
+                    next hour</h6>
+            </div>
+        </section>
+        -->
+        <!-- End of Notification-->
+
+    </main>
+    <!-- End of App Wrapper -->
+    <!-- nav bar -->
+    <div class="side-nav">
+        <a href="#" class="logo">
+            <img src="https://aerospacesummit.ca/wp-content/uploads/2017/03/your-logo-here.png" class="logo-img">
+            <img src="https://chiropracticofficedesign.com/wp-content/uploads/2016/06/insert-logo-here-red.jpg" class="logo-icon">
+        </a>
+        <ul class="nav-links">
+            <li><a href="Event-Calendar/cal.html"><p>Calendar</p></a></li>
+            <li><a href="Notes/notes.html"><p>Task Studying</p></a></li>
+            <div class="active"></div>
+        </ul>
+
+    </div>
+
+    <!-- JS Import -->
+	<script src="Todo-List.js"></script>
+	<!-- End of JS Import -->
+</body>
+</html>

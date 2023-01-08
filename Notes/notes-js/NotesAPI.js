@@ -1,6 +1,7 @@
 // interact with local storage
 var currentTask = localStorage.getItem("currentTodoItem") || "default"; //TODO: make sure works with nav bar
 var otherNotesStorage = JSON.parse(localStorage.getItem("notesapp-notes") || "[]").filter(note => note.taskId != currentTask);;
+document.getElementById("study-header").textContent = "Task: " + localStorage.getItem("currentTodoItem");
 
 export default class NotesAPI { //NotesAPI in main.js refers to class here with methods to get notes, static to access wherever we want
     static getAllNotes() {

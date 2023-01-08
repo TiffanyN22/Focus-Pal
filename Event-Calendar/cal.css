@@ -9,6 +9,7 @@ ul{
 
 body{
   background-color: rgba(167, 223, 217, 1);
+  margin-left: 200px;
 }
 
 .schedule-header{
@@ -44,6 +45,8 @@ body{
   transition: background-color 0.2s,
     color 0.2s;
   cursor: pointer;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 .add-event-button:hover, .delete-event-button:hover, .clear-all-events-button:hover,
 .event-time-input:hover, .event-date-input:hover {
@@ -79,7 +82,7 @@ body{
   font-family: 'montserrat', sans-serif, Arial;
 }
 
-@media (max-width: 670px){
+@media (max-width: 920px){
   .weekday-s:after{
     content: "S";
   }
@@ -138,7 +141,7 @@ body{
   left: 10px;
   width: 85%;
   height: 1px;
-  margin-left: 100px;
+  margin-left: 290px;
   background: #afafaf;
   z-index: 1;
 }
