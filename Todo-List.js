@@ -18,7 +18,11 @@ window.addEventListener('load', () => {
 
 	newTodoForm.addEventListener('submit', e => {
 		e.preventDefault();
-		
+		let sectionBackground = document.getElementById('section-background');
+		console.log(sectionBackground.clientHeight);
+		sectionBackground.style.height = (Number(sectionBackground.clientHeight) + 75).toString() + "px";
+		//console.log(sectionBackground.getHeight())
+		//sectionBackground.setAttribute('height', sectionBackground.getAttribute('height') + 20);
 		//check color
 		if(!allCategories.includes(e.target.elements.category.value)){
 			allCategories.push(e.target.elements.category.value);

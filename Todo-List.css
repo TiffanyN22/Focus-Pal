@@ -269,25 +269,27 @@ input[type="checkbox"] {
     justify-content: center;
     z-index: -1;
     /*width: 80%; */
-    height: 35rem;
+    height: 550px;
     left: 20%;
     right: 5%;
     top: 120px;
-    /*margin-bottom: 10%;*/
-    height: 80%; /*figure out how to snap bottom to bottom of list/ make scroll section in the list of tasks*/
+    /*margin-bottom: 10%;*
+    height: 100%; /*figure out how to snap bottom to bottom of list/ make scroll section in the list of tasks*/
     background-color: var(--dark-blue);
-    /*
-    display: flex;
-    border-radius: 3rem;
-    position: absolute;
-    z-index: -1;
-    width: 80%; 
-    height: 35rem;
-    left: 10rem;
-    top: 120px;
-    background-color: var(--dark-blue);
-    */
-  }
+}
+
+
+.side-nav{
+    width: 15%;
+    height: 100%;
+    background: #468b87;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 30px
+    
+}
+
 
 .bubble.english {
 	border-color: var(--english);
