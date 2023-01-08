@@ -5,7 +5,12 @@ const daysInaWeek = 7;
 var eventContainer = document.getElementsByClassName("event-container")[0];
 var maindims = eventContainer.getBoundingClientRect();
 var sections = daysInaWeek;
-var eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "[]");
+var eventsByDay = [];
+if(!JSON.parse(localStorage.getItem("calendar-events"))){
+  localStorage.setItem("calendar-events", "{}")
+} else{
+  eventsByDay = JSON.parse(localStorage.getItem("calendar-events") || "{}");
+}
 var eventDate = document.getElementById("date");
 var start = document.getElementById("starttime");
 var end = document.getElementById("endtime");
@@ -17,7 +22,7 @@ var deleteButton = document.getElementById("calendar-delete-button");
 var selectorValuesStr = [];
 
 if (localStorage.getItem("calendar-delete-selector-value") == null){
-  localStorage.setItem('calendar-delete-selector-value', JSON.stringify("{}")); // setting empty array
+  localStorage.setItem("calendar-delete-selector-value", JSON.stringify("{}")); // setting empty array
 } else {
   selectorValuesStr = localStorage.getItem("calendar-delete-selector-value").split(",");
 }
@@ -35,9 +40,7 @@ function loadPage(){
 
   //update add selector
   todosData = JSON.parse(localStorage.getItem("todos")|| "[]");
-  console.log("todos", todosData);
   for(let i=0; i<todosData.length; i++){
-    // console.log(todosData[i].content);
     taskSelector.add(new Option(todosData[i].content, todosData[i].content), undefined) //TODO: create task id?
   }
 
