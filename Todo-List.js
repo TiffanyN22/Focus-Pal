@@ -3,7 +3,9 @@
 math = business, english = personal*/
 window.addEventListener('load', () => {
 	todos = JSON.parse(localStorage.getItem('todos')) || [];
+	console.log(todos);
 	var allCategories = [];
+
 
 	if (localStorage.getItem('todos-categories') == null){
 		localStorage.setItem('todos-categories', JSON.stringify([])); // setting empty array
@@ -18,11 +20,7 @@ window.addEventListener('load', () => {
 
 	newTodoForm.addEventListener('submit', e => {
 		e.preventDefault();
-		let sectionBackground = document.getElementById('section-background');
-		console.log(sectionBackground.clientHeight);
-		sectionBackground.style.height = (Number(sectionBackground.clientHeight) + 75).toString() + "px";
-		//console.log(sectionBackground.getHeight())
-		//sectionBackground.setAttribute('height', sectionBackground.getAttribute('height') + 20);
+		
 		//check color
 		if(!allCategories.includes(e.target.elements.category.value)){
 			allCategories.push(e.target.elements.category.value);
@@ -58,10 +56,17 @@ function DisplayTodos () {
 	const todoList = document.querySelector('#todo-list');
 	todoList.innerHTML = "";
 
+	//changing length of section background
+	var length =((todos.length)*80)+ 550;
+	let sectionBackground = document.getElementById('section-background');
+	//console.log('old height:' + sectionBackground.clientHeight);
+	sectionBackground.style.height = length.toString() + "px";
+	//console.log('new height:'+ sectionBackground.clientHeight);
+
 	todos.forEach(todo => {
+
 		const todoItem = document.createElement('div');
 		todoItem.classList.add('todo-item');
-
 		const label = document.createElement('label');
 		const input = document.createElement('input');
 		const span = document.createElement('span');
