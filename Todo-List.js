@@ -15,25 +15,28 @@ window.addEventListener('load', () => {
 	}
 
 	const newTodoForm = document.querySelector('#new-todo-form');
+	const newSortForm = document.querySelector('#new-sort-form');
 
 	var taskColors = ["rgb(255, 158, 184)", "rgb(245, 151, 151)", "rgb(245, 207, 151)", "rgb(222, 222, 0)", "rgb(151, 245, 185)","rgb(151, 245, 241)", "rgb(158, 217, 255)", "rgb(158, 164, 255)", "rgb(207, 158, 255)", "rgb(255, 158, 155)"]; //for calendar
 
 	newTodoForm.addEventListener('submit', e => {
+
 		e.preventDefault();
-		
+
 		//check color
 		if(!allCategories.includes(e.target.elements.category.value)){
 			allCategories.push(e.target.elements.category.value);
 			localStorage.setItem('todos-categories', JSON.stringify(allCategories));
 		}
+
 		// console.log("allCategories", allCategories);
 		// console.log("index", allCategories.indexOf(e.target.elements.category.value));
 		// console.log("color", taskColors[allCategories.indexOf(e.target.elements.category.value)%taskColors.length]);
 
 		const todo = {
+			category: e.target.elements.category.value,
 			content: e.target.elements.content.value,
 			estimate: e.target.elements.estimate.value,
-			category: e.target.elements.category.value,
 			done: false,
 			color: taskColors[allCategories.indexOf(e.target.elements.category.value)%taskColors.length],
 			createdAt: new Date().getTime()
@@ -49,15 +52,28 @@ window.addEventListener('load', () => {
 		DisplayTodos()
 	})
 
+	newSortForm.addEventListener('submit', e => {
+		console.log('sort pressed');
+		SortTodoCategories();
+	})
+
+
 	DisplayTodos()
 })
+
+function SortTodoCategories() {
+	//todos.sort();
+	console.log('in SortTodoCategories' + todos);
+	
+	localStorage.setItem('todos', JSON.stringify(todos));
+}
 
 function DisplayTodos () {
 	const todoList = document.querySelector('#todo-list');
 	todoList.innerHTML = "";
 
 	//changing length of section background
-	var length =((todos.length)*80)+ 550;
+	var length =((todos.length)*85)+ 550;
 	let sectionBackground = document.getElementById('section-background');
 	//console.log('old height:' + sectionBackground.clientHeight);
 	sectionBackground.style.height = length.toString() + "px";
@@ -156,8 +172,13 @@ function DisplayTodos () {
 
 		deleteButton.addEventListener('click', (e) => {
 			todos = todos.filter(t => t != todo);
+
+			
+			
 			localStorage.setItem('todos', JSON.stringify(todos));
+			localStorage.setItem('todos-categories', JSON.stringify())
 			DisplayTodos()
 		})
+
 	})
 }

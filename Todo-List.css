@@ -127,34 +127,6 @@ h6 {
     opacity: 1;
 
 }
-/*.section-background {
-    display: flex;
-    border-radius: 3rem;
-    position: absolute;
-    z-index: -1;
-    width: 80%; 
-    height: 35rem;
-    left: 10rem;
-    top: 120px;
-    background-color: var(--dark-blue);
-  }*/
-/*
-
-.left-border {
-    position: absolute;
-    z-index:0;
-	height: 100%;
-  	overflow: auto;
-	min-height: 100vh;
-	height: auto;
-    margin-bottom:0;
-    width: 15%;
-    left: 0;
-    top: 0;
-    background-color: var(--darkest-blue);
-    margin-top: 0rem;
-}
-*/
 
 .calendar-button {
     border-radius: 1rem;
@@ -407,7 +379,7 @@ input:checked ~ .bubble::after {
 	opacity: 0.75;
 }
 
-.todo-item .actions .notes {
+.todo-list .sort {
 	margin-right: 0.5rem;
 	background-color: var(--dark);
 }
