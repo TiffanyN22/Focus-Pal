@@ -5,7 +5,8 @@ body {
     height: 100%;
     /* margin: 0; */
     background-color: rgba(167, 223, 217, 1);
-    margin-left: 200px;
+    /* margin-left: 200px; */
+    margin-left: 15%;
 }
 
 .header-container{
